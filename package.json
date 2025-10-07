@@ -1,0 +1,85 @@
+{
+  "name": "perplexity-copilot",
+  "displayName": "Perplexity Copilot",
+  "description": "Chat with Perplexity AI inside VS Code like a coding copilot.",
+  "version": "1.0.0",
+  "publisher": "yourname",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "contributes": {
+    "commands": [
+      {
+        "command": "perplexity.ask",
+        "title": "Ask Ritu Perplexity"
+      },
+      {
+        "command": "perplexity.showConfig",
+        "title": "Perplexity: Show Ritu config"
+      },
+      {
+        "command": "perplexity.setApiKey",
+        "title": "Perplexity: Set API key"
+      },
+      {
+        "command": "perplexity.showSidebar",
+        "title": "Perplexity: Show Sidebar"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "perplexity-copilot",
+          "title": "Perplexity Copilot",
+          "icon": "media/icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "perplexity-copilot": [
+        {
+          "type": "webview",
+          "id": "perplexityChat",
+          "name": "Chat",
+          "icon": "media/icon.svg"
+        }
+      ]
+    },
+    "configuration": {
+      "type": "object",
+      "title": "Perplexity",
+      "properties": {
+        "perplexity.apiKey": {
+          "type": "string",
+          "default": "",
+          "description": "Perplexity API key used by the extension. You can also set PERPLEXITY_API_KEY in your environment."
+        },
+        "perplexity.model": {
+          "type": "string",
+          "default": "",
+          "description": "(Optional) Perplexity model to use for completions. Leave empty to use the server default. See https://docs.perplexity.ai/getting-started/models for permitted models."
+        }
+      }
+    }
+  },
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "out/extension.js",
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "start": "npm run watch"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "@types/node-fetch": "^2.6.13",
+    "@types/vscode": "^1.80.0",
+    "typescript": "^5.3.0"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "node-fetch": "^2.7.0"
+  }
+}
